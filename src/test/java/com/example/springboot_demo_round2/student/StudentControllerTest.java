@@ -59,6 +59,14 @@ class StudentControllerTest {
     }
 
     @Test
+    void shouldUpdateWithJustName() {
+
+        testStudentController.updateStudent(1L, "Jeff", null);
+
+        verify(testStudentService).updateStudent(1L, "Jeff", null);
+    }
+
+    @Test
     void shouldDeleteStudent() {
 
         testStudentController.deleteStudentById(1L);
