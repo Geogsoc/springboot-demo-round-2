@@ -14,14 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class StudentControllerTest {
-
-
     @Mock
     private StudentService testStudentService;
-
     @InjectMocks
     private StudentController testStudentController;
-
 
     @BeforeEach
     void setUp() {
@@ -37,13 +33,11 @@ class StudentControllerTest {
 
         List<Student> students = testStudentController.getStudents();
 
-
         verify(testStudentService).getStudents();
 
         assertEquals(1, students.size());
 
         assertThat(students).usingRecursiveComparison().isEqualTo(List.of(jeff));
-
     }
 
     @Test
@@ -64,9 +58,13 @@ class StudentControllerTest {
         verify(testStudentService).updateStudent(1L, "Jeff", "jeff@hotmail.com");
     }
 
-//shouldDeleteStudent(){
+    @Test
+    void shouldDeleteStudent() {
 
-//}
+        testStudentController.deleteStudentById(1L);
+
+        verify(testStudentService).delete(1L);
+    }
 }
 
 

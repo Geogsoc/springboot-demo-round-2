@@ -15,7 +15,7 @@ class StudentRepositoryTest {
 
     @Autowired
     private StudentRepository studentRepository;
-    private Student studentTest;
+    Student studentTest;
 
     @BeforeEach
     void setUp() {
@@ -28,9 +28,8 @@ class StudentRepositoryTest {
 
         Optional<Student> maybeStudent = studentRepository.findStudentByEmail("elis@email.com");
 
-        assertThat(maybeStudent).isPresent().hasValueSatisfying(student1 -> {
-            assertThat(student1).usingRecursiveComparison().isEqualTo(studentTest);
-        });
+        assertThat(maybeStudent).isPresent().hasValueSatisfying(student1 ->
+                assertThat(student1).usingRecursiveComparison().isEqualTo(studentTest));
     }
 
     @Test
